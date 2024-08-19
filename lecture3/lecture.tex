@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\colorlet{LightGray}{black!10}
+\colorlet{LightOrange}{orange!15}
+\colorlet{LightGreen}{green!15}
+\colorlet{LightBlue}{blue!15}
+\colorlet{LightCyan}{cyan!15}
+
+
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\usepackage{tcolorbox} % Add missing package
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{definition}
+\tcolorboxenvironment{definition}{colback=LightBlue}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+
+\declaretheoremstyle[name=Proof,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proofbox}
+\tcolorboxenvironment{proofbox}{colback=LightOrange}
+
+\declaretheoremstyle[name=Axiom,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{axiom}
+\tcolorboxenvironment{axiom}{colback=LightGreen}
+
+\declaretheoremstyle[name=Lemma,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{lemma}
+\tcolorboxenvironment{lemma}{colback=LightCyan}
+
+
+
+
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{Lecture 3 (May 17)}
+		\HRule{2.0pt} \\ [0.6cm] \LARGE{Fields, Induction, Binomial Theorem: \textit{TEXTBOOK pg 20 - }} \vspace*{10\baselineskip}}
+		}
+\date{}
+\author{\textbf{Author} \\ 
+		Tom Jeong
+        }
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------------------------
+\section{Remarks on supremums and bounded above}
+Supremums and Upper bounds are not the same and it's been quite confusing so I'll make a note here: \\ 
+Let $P$ be a partially ordered set and $A \subset P$ 
+\subsection{Upper Bound}
+$x \in P$ is an upper bound of $A$ if $a \leq x$ for all $a \in A$.
+\subsection{Supremum}
+We say $s \in P$ is the supremum of $A$ if it satisfies two things: 
+\begin{enumerate}
+    \item $s$ is an upper bound of $A$
+    \item $s$ is the smallest upper bound of $A$
+\end{enumerate}
+
+
+\end{document}

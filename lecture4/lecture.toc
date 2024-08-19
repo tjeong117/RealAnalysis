@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Comparison Theorem}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Bolzeno - weirstrass Tbeorem}{4}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Proof of Bolzao -Weirstrass Theorem}{5}{section.2}%

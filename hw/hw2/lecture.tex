@@ -1,0 +1,324 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+
+\colorlet{LightGray}{black!10}
+\colorlet{LightOrange}{white!15}
+\colorlet{LightGreen}{green!15}
+\colorlet{LightBlue}{blue!15}
+\colorlet{LightCyan}{cyan!15}
+
+
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\usepackage{tcolorbox} % Add missing package
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{definition}
+\tcolorboxenvironment{definition}{colback=LightBlue}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+
+\declaretheoremstyle[name=Proof,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proofbox}
+\tcolorboxenvironment{proofbox}{colback=LightOrange}
+
+\declaretheoremstyle[name=Axiom,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{axiom}
+\tcolorboxenvironment{axiom}{colback=LightGreen}
+
+\declaretheoremstyle[name=Lemma,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{lemma}
+\tcolorboxenvironment{lemma}{colback=LightCyan}
+
+
+
+
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{Homework 2 Tom (wonsuk) Jeong  }
+\maketitle
+
+\section{Question 1} Let $a_1 = 1$ and $a_{n+1} = 1 + \frac{1 + a_n}{1 + a_n}$. Find $\lim_{n \to \infty} a_n$.
+ hint: Observe that $a_{n+1} = 1 + \frac{2a_n}{1 + a_n}$. Then write $a_{n+k} = \cfrac{A_k + B_k a_n}{C_k + D_k a_n}$  and find a formula for $A_n, B_n, C_n, D_n$. Then observe you can write $a_{n+1} = \cfrac{A_n + B_n}{C_n + D_n}$.
+    finding the $\lim a_n$ 
+    \begin{align*}
+        a_{n+1} &= 1 + \frac{2a_n}{1 + a_n} \\
+        a_{n+2} &= 1 + \frac{2a_{n+1}}{1 + a_{n+1}} \\
+        &= 1 + \frac{2(1 + \frac{2a_n}{1 + a_n})}{1 + 1 + \frac{2a_n}{1 + a_n}} \\
+        &= 1 + \frac{2 + \frac{4a_n}{1 + a_n}}{2 + \frac{2a_n}{1 + a_n}} \\
+        &= 1 + \frac{2 + 4a_n}{2 + 2a_n} \\
+        a_{n+3} &= 1 + \frac{2 + 4a_{n+1}}{2 + 2a_{n+1}} \\
+        &= 1 + \frac{2 + 4(1 + \frac{2a_n}{1 + a_n})}{2 + 2(1 + \frac{2a_n}{1 + a_n})} \\
+        &= 1 + \frac{2 + 4 + \frac{8a_n}{1 + a_n}}{2 + 2 + \frac{4a_n}{1 + a_n}} \\
+        &= 1 + \frac{6 + 8a_n}{4 + 4a_n} \\
+    \end{align*}
+    generalizing the pattern we get 
+    \begin{align*}
+        a_{n+k} &= 1 + \frac{2k + 2a_n}{k + a_n} \\
+    \end{align*}
+    we can write $a_{n+k} = \cfrac{A_k + B_k a_n}{C_k + D_k a_n}$ by setting $A_k = 2k + 2, B_k = 1, C_k = k, D_k = 1$.
+    \begin{align*}
+        a_{n+k} &= \cfrac{2k + 2 + a_n}{k + a_n} \\
+    \end{align*}
+    then $a_{n + 1} = \cfrac{A_n + B_n}{C_n + D_n}$ by setting $A_n = 2 + 2, B_n = 1, C_n = 1, D_n = 1$.
+    \begin{align*}
+        a_{n+1} &= \cfrac{4 + a_n}{1 + a_n} \\
+    \end{align*}
+    to find the limit of $a_n$ we can set $a_{n+1} = a_n = a$ and solve for $a$.
+    \begin{align*}
+        a &= \cfrac{4 + a}{1 + a} \\
+        a + a^2 &= 4 + a \\
+        a^2 &= 4 \\
+        a &= 2, -2 \\
+    \end{align*}
+    since $a_1 = 1$ we have $a = 2$.
+    \begin{align*}
+        \lim_{n \to \infty} a_n = 2 \\
+    \end{align*}
+
+\section{question 2}
+
+
+Let $0 < x_1 \leq x_2 \leq \dots \leq x_k$ prove that $\lim_{n \to \infty} (x_{1}^n + x_{2}^n + \dots + x_{k}^n)^{1/n} = x_k$.
+\begin{proofbox}
+    Consider the sequence \(\{a_n\}\) defined by
+    \[
+    a_n = (x_1^n + x_2^n + \cdots + x_k^n)^{1/n}.
+    \]
+    We want to show that
+    \[
+    \lim_{n \to \infty} a_n = x_k.
+    \]
+    
+    First, observe that since \(0 < x_1 \leq x_2 \leq \cdots \leq x_k\), we have:
+    \[
+    x_k^n \leq x_1^n + x_2^n + \cdots + x_k^n \leq kx_k^n.
+    \]
+    
+    Taking the \(n\)-th root of each part of the inequality, we get:
+    \[
+    (x_k^n)^{1/n} \leq (x_1^n + x_2^n + \cdots + x_k^n)^{1/n} \leq (kx_k^n)^{1/n}.
+    \]
+    
+    Simplifying:
+    \[
+    x_k \leq (x_1^n + x_2^n + \cdots + x_k^n)^{1/n} \leq k^{1/n} \cdot x_k.
+    \]
+        
+    lhs, $\lim_{n \to \infty} x_k = x_k$ and rhs, $\lim_{n \to \infty} k^{1/n} \cdot x_k = x_k$. Thus, by squeeze theorem the limit of \(a_n\) is \(x_k\).
+
+
+\end{proofbox}
+
+\section{question 3}
+
+Let $k \in \mathbb{N}$ and suppose $\sum_{n=1}^{\infty} |a_{n+k} - a_n|$ converges. Prove that $(a_n)$ has a convergent subsequence.Hint: Use Bolzano Weierstrass,
+and that the tail end of a convergent series must go to 0
+
+given that $\sum_{n=1}^{\infty} |a_{n+k} - a_n|$ converges, we can wrie te partial sums by $S_N = \sum_{n=1}^{N} |a_{n+k} - a_n|$. Since this series converges and $(S_N)$ is bounded\\ there exists some $M > 0$ s.t.:
+
+\[
+S_N \leq M \quad \forall N.
+\]
+
+since the series $\sum_{n=1}^{\infty} |a_{n+k} - a_n|$ converges, $|a_{n+k} - a_n| \to 0$
+
+\[
+\lim_{n \to \infty} |a_{n+k} - a_n| = 0.
+\]
+
+The BW states that every bounded sequence in $\mathbb{R}$ has a convergent subsequence. To apply this we show that $(a_n)$ is bounded.
+
+Since $\sum_{n=1}^{\infty} |a_{n+k} - a_n|$ converges, and we know $\lim_{n \to \infty} |a_{n+k} - a_n| = 0$, we have:
+
+\[
+|a_{n+k} - a_n| < \epsilon \quad \text{for large large } n.
+\]
+
+This means that for large $n$, $a_{n+k}$ becomes closer too $a_n$. we have  
+
+1. The first $k$ terms $a_1, a_2, \ldots, a_k$ which form a finite set and bounded.
+2. For $n > k$, each $a_n$ is close to some $a_{n-k}$ due to the convergence to 0 of the differences.
+
+We can cover the sequence by finite bounds up to $a_k$ and then note that subsequent terms stay close to these, which makes the entire sequence bounded.
+
+Given that $(a_n)$ is bounded, by BW, there exists a convergent subsequence $(a_{n_j})$ of $(a_n)$.
+
+thus, the sequence $(a_n)$ has a convergent subsequence.
+
+\hfill $\blacksquare$
+
+\section{question 4}
+Prove that a sequence in a finite set has a constant subsequence.
+
+Let $S$ be a finite set. Then $S = \{a_1, a_2, \ldots, a_n\}$ for some $n \in \mathbb{N}$. Consider a sequence $(a_n)$ in $S$. Since $S$ is finite, the sequence $(a_n)$ will repeat. so there exists some $N \in \mathbb{N}$ st $a_n = a_{n+k}$  $\forall n \geq N$ and some $k \in \mathbb{N}$.
+
+\section{question 5} let $(n_k)$ be a sequence of positive integers which contains every
+positive integer exactly once. prove that $\lim_{k} \sup a_{n_k} = \lim_{n} \sup a_n$ and $\lim_{k} \inf a_{n_k} = \lim_{n} \inf a_n$.
+
+    let $(n_k)$ be sequence of positive integers that contains every positive integer once.we show that
+    1. \[
+    \lim_{k} \sup a_{n_k} = \lim_{n} \sup a_n
+    \]
+   2.  \[
+    \lim_{k} \inf a_{n_k} = \lim_{n} \inf a_n.
+    \]
+    
+    so, we show that
+    \[
+    \lim_{k} \sup a_{n_k} \leq \lim_{n} \sup a_n.
+    \]
+    
+    Let \(M = \lim_{n} \sup a_n\). Then, $\forall$ \(\epsilon > 0\), $\exists$ \(N \in \mathbb{N}\) such that
+    \[
+    a_n < M + \epsilon \quad \forall n \geq N.
+    \]
+    
+    Since \((n_k)\) contains every positive integer exactly once, there exists \(K \in \mathbb{N}\) such that
+    \[
+    n_k \geq N \quad \forall k \geq K.
+    \]
+    
+    thus,  \(\forall k \geq K\), we have
+    \[
+    a_{n_k} < M + \epsilon.
+    \]
+    
+    Taking the supremum over all \(k \geq K\), we get
+    \[
+    \sup_{k \geq K} a_{n_k} \leq M + \epsilon.
+    \]
+    
+    \[
+    \lim_{k} \sup a_{n_k} \leq \lim_{n} \sup a_n.
+    \]
+    we show that
+    \[
+    \lim_{k} \sup a_{n_k} \geq \lim_{n} \sup a_n.
+    \]
+    
+    Let \(M = \lim_{n} \sup a_n\). $\forall$ \(\epsilon > 0\), by the definition of \(\limsup\), there are infinitely many \(n\) such that
+    \[
+    a_n > M - \epsilon.
+    \]
+    
+    Since \((n_k)\) contains every positive integer exactly once, there are infinitely many \(k\) such that
+    \[
+    a_{n_k} > M - \epsilon.
+    \]
+    
+    Taking the supremum the subsequence, 
+    \[
+    \sup a_{n_k} \geq M - \epsilon.
+    \]
+    
+    Since \(\epsilon > 0\) we have
+    \[
+    \lim_{k} \sup a_{n_k} \geq \lim_{n} \sup a_n.
+    \]
+    
+    Combining the two inequalities, we have
+    \[
+    \lim_{k} \sup a_{n_k} = \lim_{n} \sup a_n.
+    \]
+    
+    Now, we show that
+    \[
+    \lim_{k} \inf a_{n_k} \leq \lim_{n} \inf a_n.
+    \]
+    
+    Let \(m = \lim_{n} \inf a_n\). Then  \(\forall \epsilon > 0\), there exists \(N \in \mathbb{N}\) such that
+    \[
+    a_n > m - \epsilon \quad \forall n \geq N.
+    \]
+    
+    Since \((n_k)\) contains every positive integer exactly once, there exists \(K \in \mathbb{N}\) such that
+    \[
+    n_k \geq N \quad \forall k \geq K.
+    \]
+    
+    Therefore, \(\forall k \geq K\), we have
+    \[
+    a_{n_k} > m - \epsilon.
+    \]
+    
+    Taking the infimum over all \(k \geq K\), we get
+    \[
+    \inf_{k \geq K} a_{n_k} \geq m - \epsilon.
+    \]
+    
+    Since \(\epsilon > 0\), we have
+    \[
+    \lim_{k} \inf a_{n_k} \leq \lim_{n} \inf a_n.
+    \]
+    
+    now we show that
+    \[
+    \lim_{k} \inf a_{n_k} \geq \lim_{n} \inf a_n.
+    \]
+    
+    Let \(m = \lim_{n} \inf a_n\). And \(\forall \epsilon > 0\), by definition of \(\liminf\), there are infinitely many \(n\) such that
+    \[
+    a_n < m + \epsilon.
+    \]
+    
+    Since \((n_k)\) contains every positive integer exactly once, there are infinitely many \(k\) st
+    \[
+    a_{n_k} < m + \epsilon.
+    \]
+    
+    Taking the infimum over these values, we get
+    \[
+    \inf a_{n_k} \leq m + \epsilon.
+    \]
+    
+    Since \(\epsilon > 0\) we have
+    \[
+    \lim_{k} \inf a_{n_k} \leq \lim_{n} \inf a_n.
+    \]
+    
+    Combining the two inequalities, we get
+    \[
+    \lim_{k} \inf a_{n_k} = \lim_{n} \inf a_n.
+    \]
+    
+    thus, we have proved that
+    \[
+    \lim_{k} \sup a_{n_k} = \lim_{n} \sup a_n
+    \]
+    and
+    \[
+    \lim_{k} \inf a_{n_k} = \lim_{n} \inf a_n.
+    \]
+    
+
+
+\end{document}

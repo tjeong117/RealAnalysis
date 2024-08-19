@@ -1,0 +1,426 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+
+\colorlet{LightGray}{black!10}
+\colorlet{LightOrange}{white!15}
+\colorlet{LightGreen}{green!15}
+\colorlet{LightBlue}{blue!15}
+\colorlet{LightCyan}{cyan!15}
+
+
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\usepackage{tcolorbox} % Add missing package
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{definition}
+\tcolorboxenvironment{definition}{colback=LightBlue}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+
+\declaretheoremstyle[name=Proof,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proofbox}
+\tcolorboxenvironment{proofbox}{colback=LightOrange}
+
+\declaretheoremstyle[name=Axiom,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{axiom}
+\tcolorboxenvironment{axiom}{colback=LightGreen}
+
+\declaretheoremstyle[name=Lemma,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{lemma}
+\tcolorboxenvironment{lemma}{colback=LightCyan}
+
+
+
+
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{Homework3  Tom (wonsuk) Jeong  }
+\maketitle
+\section{Question 1} 
+
+
+Question 1: Let $a < b < c < d$. Prove that if $f$ is uniformly continuous on $(a, b)$ and on $(c, d)$, then $f$ is uniformly continuous on $(a, b) \cup (c, d)$. What if $b = c$?
+\begin{proofbox}
+    Let $\varepsilon > 0$.
+
+Since $f$ is uniformly continuous on $(a, b)$, there exists $\delta_1 > 0$ such that 
+\[
+\forall x, y \in (a, b), \ |x - y| < \delta_1 \implies |f(x) - f(y)| < \varepsilon.
+\]
+
+Since $f$ is uniformly continuous on $(c, d)$, there exists $\delta_2 > 0$ such that 
+\[
+\forall x, y \in (c, d), \ |x - y| < \delta_2 \implies |f(x) - f(y)| < \varepsilon.
+\]
+
+Let $\delta = \min(\delta_1, \delta_2)$. 
+
+For any $x, y \in (a, b) \cup (c, d)$, we need to consider three cases:
+
+1. If $x, y \in (a, b)$:
+\[
+|x - y| < \delta \leq \delta_1 \implies |f(x) - f(y)| < \varepsilon.
+\]
+
+2. If $x, y \in (c, d)$:
+\[
+|x - y| < \delta \leq \delta_2 \implies |f(x) - f(y)| < \varepsilon.
+\]
+
+3. If $x \in (a, b)$ and $y \in (c, d)$ or vice versa:
+\[
+|x - y| \geq c - b \text{ (since } x \text{ and } y \text{ are in disjoint intervals)}.
+\]
+
+In this case, since $f$ is uniformly continuous on both intervals, the continuity within each interval ensures that the function does not exhibit large jumps between the intervals.
+
+Thus, we have
+\[
+|x - y| < \delta \implies |f(x) - f(y)| < \varepsilon.
+\]
+
+Hence, $f$ is uniformly continuous on $(a, b) \cup (c, d)$.
+
+\textbf{Case when $b = c$:}
+
+If $b = c$, then $(a, b) \cup (b, d) = (a, d)$. 
+
+Since $f$ is uniformly continuous on $(a, b)$ and on $(b, d)$, by a similar argument as above, $f$ is uniformly continuous on $(a, d)$.
+
+\end{proofbox}
+
+\section{Question 2}
+
+Prove that if $\sum_{k=1}^{\infty} a_k$ converges and $b_k$ is bounded and monotone, then $\sum_{k=1}^{\infty} a_k b_k$ converges.
+
+\begin{proofbox}
+    Given that $\sum_{k=1}^{\infty} a_k$ converges, we know that $a_k \to 0$ as $k \to \infty$. Let $b_k$ be bounded and monotone. Without loss of generality, assume $b_k$ is monotone decreasing. Let $b_k$ be bounded, i.e., there exists $M > 0$ such that $|b_k| \leq M$ for all $k$.
+
+Since $b_k$ is monotone decreasing, it converges to some limit $l$. Thus, for any $\varepsilon > 0$, there exists $N(\varepsilon)$ such that for all $k > N(\varepsilon)$, we have $|b_k - l| < \varepsilon$. This implies:
+\[
+l - \varepsilon < b_k < l + \varepsilon, \quad \forall k > N(\varepsilon).
+\]
+
+For $k > N(\varepsilon)$,
+\[
+|a_k b_k - a_k l| < |a_k| \cdot \varepsilon.
+\]
+
+Summing both sides, we get:
+\[
+\sum_{k=N(\varepsilon)+1}^{\infty} |a_k b_k - a_k l| < \sum_{k=N(\varepsilon)+1}^{\infty} |a_k| \cdot \varepsilon.
+\]
+
+Since $\sum_{k=1}^{\infty} a_k$ converges, $\sum_{k=N(\varepsilon)+1}^{\infty} |a_k| < \infty$. Hence,
+\[
+\sum_{k=N(\varepsilon)+1}^{\infty} |a_k| \cdot \varepsilon < \infty.
+\]
+
+Therefore,
+\[
+\sum_{k=N(\varepsilon)+1}^{\infty} |a_k b_k - a_k l| < \infty.
+\]
+
+Since $\sum_{k=1}^{\infty} a_k l$ converges (as it is a multiple of a convergent series), it follows that
+\[
+\sum_{k=1}^{\infty} a_k b_k \text{ converges}.
+\]
+\end{proofbox}
+
+\section{Question 3}
+let $(f_n)$ be uniformly bounded and let $f, g$ be bounded on $[0, 1]$. Also, suppose that $f_n \to f$ uniformly on $[r, 1]$ for all $0 < r < 1$. If $g$ is continuous at 0 and $g(0) = 0$, prove that $f_n g \to f g$ uniformly on $[0, 1]$.
+
+\begin{proofbox}
+
+    To prove that \( f_n g \to fg \) uniformly on \([0, 1]\), we need to show that for any \(\epsilon > 0\), there exists \(N \in \mathbb{N}\) such that for all \(n \geq N\) and for all \(x \in [0, 1]\),
+
+    \[
+    |f_n(x)g(x) - f(x)g(x)| < \epsilon.
+    \]
+    
+    Since \( f_n \to f \) uniformly on \([r, 1]\) for all \(0 < r < 1\), we know that for any \(\epsilon > 0\), there exists \(N_r \in \mathbb{N}\) such that for all \(n \geq N_r\) and for all \(x \in [r, 1]\),
+    
+    \[
+    |f_n(x) - f(x)| < \frac{\epsilon}{2M_g},
+    \]
+    
+    where \(M_g = \sup_{x \in [0, 1]} |g(x)|\), which is finite since \(g\) is bounded on \([0, 1]\).
+    
+    Next, we need to consider the behavior of \(f_n g\) and \(fg\) on \([0, r]\) for \(0 < r < 1\). Since \(g\) is continuous at 0 and \(g(0) = 0\), for any \(\epsilon > 0\), there exists \(\delta > 0\) such that for all \(x \in [0, \delta]\),
+    
+    \[
+    |g(x)| < \frac{\epsilon}{4M_f},
+    \]
+    
+    where \(M_f = \sup_{n \in \mathbb{N}} \sup_{x \in [0, 1]} |f_n(x)|\) which is finite because \((f_n)\) is uniformly bounded.
+    
+    Now, choose \(r = \delta\). For \(x \in [0, \delta]\), we have
+    
+    \[
+    |f_n(x)g(x) - f(x)g(x)| \leq |f_n(x)| |g(x)| + |f(x)| |g(x)| < 2M_f \cdot \frac{\epsilon}{4M_f} = \frac{\epsilon}{2}.
+    \]
+    
+    For \(x \in [\delta, 1]\), we have
+    
+    \[
+    |f_n(x)g(x) - f(x)g(x)| \leq |f_n(x) - f(x)| |g(x)| \leq \frac{\epsilon}{2M_g} \cdot M_g = \frac{\epsilon}{2}.
+    \]
+    
+    Combining both parts, for any \(\epsilon > 0\), we can find \(N = \max(N_\delta, N_r)\) such that for all \(n \geq N\) and for all \(x \in [0, 1]\),
+    
+    \[
+    |f_n(x)g(x) - f(x)g(x)| < \epsilon.
+    \]
+    
+    Thus, \(f_n g \to fg\) uniformly on \([0, 1]\).
+    
+
+\end{proofbox}
+\section{Question 4}
+
+prove the function defined by $\phi(x) = \begin{cases} e^{-\frac{1}{1-x^2}} & |x| < 1 \\ 0 & |x| \geq 1 \end{cases}$ is $C^{\infty}(\mathbb{R})$ but not analytic on any interval containing $-1$ or $1$.
+and also (2) define for alll $\epsilon > 0$  $\phi_{\epsilon}(x) = \epsilon^{-1}\phi(x/\epsilon)$ 
+
+Let $f\in C^1(\mathbb{R})$. Prove the the function defined by $f_{\epsilon}(x) = \int_{-\infty}^{\infty} \phi_{\epsilon}(x - t)f(t)dt$ is $C^{\infty}(\mathbb{R})$ and also that $lim_{\epsilon \to 0} f_{\epsilon}(x) = f(x)$ for all $x \in \mathbb{R}$.
+\begin{proof}
+
+   1: $\phi(x)$ is $C^{\infty}(\mathbb{R})$ but not analytic
+
+Consider the function \(\phi(x)\) defined by:
+
+\[
+\phi(x) = 
+\begin{cases} 
+e^{-\frac{1}{1-x^2}} & \text{if } |x| < 1, \\
+0 & \text{if } |x| \geq 1.
+\end{cases}
+\]
+
+To show that \(\phi(x)\) is \(C^{\infty}(\mathbb{R})\), we show that \(\phi(x)\) and all its derivatives are continuous in \(\mathbb{R}\).
+
+smootheness inside \(|x| < 1\) For \(|x| < 1\), \(\phi(x) = e^{-\frac{1}{1-x^2}}\). The function \(e^{-u}\) is infinitely differentiable for all \(u\), and \(\frac{1}{1-x^2}\)  also infinitely differentiable for \(|x| < 1\). thus, \(\phi(x)\) is \(C^{\infty}\) for \(|x| < 1\).
+
+behvior at \(|x| = 1\): as \(x \to 1\) or \(x \to -1\), \(\frac{1}{1-x^2} \to \infty\) and thus \(e^{-\frac{1}{1-x^2}} \to 0\). thus, \(\phi(x) \to 0\) as \(x \to \pm 1\).
+
+smoothess at \(|x| = 1\) we need to show that all derivatives of \(\phi(x)\) approach zero as \(x \to \pm 1\). The \(n\)-th derivative of \(\phi(x)\) for \(|x| < 1\) can be expressed as a product involving \(e^{-\frac{1}{1-x^2}}\) and factors of \(\left(\frac{1}{1-x^2}\right)^k\) for some integer \(k\). Each derivative thus tends to zero as \(x \to \pm 1\), because \(e^{-\frac{1}{1-x^2}}\) decays faster than any polynomial growth of \(\left(\frac{1}{1-x^2}\right)^k\).
+
+4. smootness for \(|x| > 1\)**: For \(|x| > 1\), \(\phi(x) = 0\), which  trivially \(C^{\infty}\).
+
+Therefore, \(\phi(x)\) is \(C^{\infty}(\mathbb{R})\). \\ 
+
+
+
+Proof that \(\phi(x)\) is not analytic on any interval containing \(-1\) or \(1\)
+
+
+1. Derivatives at \(x = 1\): Consider the derivatives of \(\phi(x)\) at \(x = 1\). Each derivative involves factors of \(e^{-\frac{1}{1-x^2}}\). Evaluating any derivative at \(x = 1\) yields zero because \(e^{-\frac{1}{1-x^2}} \to 0\) faster than any polynomial term grows.
+
+2.Taylor Series around \(x = 1\): For \(\phi(x)\) to be analytic at \(x = 1\), its Taylor series around \(x = 1\) must converge to \(\phi(x)\). Since all derivatives of \(\phi(x)\) at \(x = 1\) are zero, the Taylor series of \(\phi(x)\) at \(x = 1\) is identically zero. However, \(\phi(x)\) is not identically zero in any neighborhood of \(x = 1\) because it is nonzero for \(|x| < 1\). Therefore, the Taylor series does not represent \(\phi(x)\) in any neighborhood of \(x = 1\).
+
+ \(\phi(x)\) is not analytic at \(x = -1\) either. Therefore, \(\phi(x)\) is \(C^{\infty}\) but not analytic on any interval containing \(-1\) or \(1\).
+\\ 
+
+properties of phi epsilon and f epsilons 
+Define:
+
+\[
+\phi_\epsilon(x) = \frac{1}{\epsilon} \phi\left(\frac{x}{\epsilon}\right).
+\]
+
+Let \(f \in C^1(\mathbb{R})\). Define:
+
+\[
+f_\epsilon(x) = \int_{-\infty}^{\infty} \phi_\epsilon(x - t) f(t) \, dt.
+\] \\
+Proof that \(f_\epsilon(x)\) is \(C^{\infty}(\mathbb{R})\) 
+
+To show that \(f_\epsilon(x)\) is \(C^{\infty}(\mathbb{R})\), we use the fact that convolution with a \(C^{\infty}\) function yields a \(C^{\infty}\) function.
+
+1. smoothness of \(\phi_\epsilon\): Since \(\phi(x)\) is \(C^{\infty}\), \(\phi_\epsilon(x)\) is also \(C^{\infty}\) because it is a scaled and shifted version of \(\phi(x)\).
+
+2. Differentiability of \(f_\epsilon\): The convolution \(f_\epsilon(x)\) can be differentiated under the integral sign because \(\phi_\epsilon\) and \(f\) are sufficiently smooth. For any \(k \in \mathbb{N}\), the \(k\)-th derivative of \(f_\epsilon\) is given by:
+
+\[
+f_\epsilon^{(k)}(x) = \int_{-\infty}^{\infty} \phi_\epsilon^{(k)}(x - t) f(t) \, dt.
+\]
+
+Since \(\phi_\epsilon\) is \(C^{\infty}\), all its derivatives exist and are continuous. Thus, \(f_\epsilon\) is \(C^{\infty}(\mathbb{R})\).
+
+
+Proof that \(\lim_{\epsilon \to 0} f_\epsilon(x) = f(x)\) for all \(x \in \mathbb{R}\)
+
+\(\phi_\epsilon\) acts as an approximate identity.
+
+1. Approximate Identity: As \(\epsilon \to 0\), \(\phi_\epsilon(x)\) becomes increasingly concentrated around \(x = 0\). Specifically, \(\phi_\epsilon(x)\) approximates the Dirac delta function \(\delta(x)\).
+
+2. Pointwise Convergence: For a fixed \(x \in \mathbb{R}\),
+
+\[
+f_\epsilon(x) = \int_{-\infty}^{\infty} \phi_\epsilon(x - t) f(t) \, dt.
+\]
+
+As \(\epsilon \to 0\), \(\phi_\epsilon(x - t) \to \delta(x - t)\), so
+
+\[
+\lim_{\epsilon \to 0} f_\epsilon(x) = \int_{-\infty}^{\infty} \delta(x - t) f(t) \, dt = f(x).
+\]
+
+Thus, \( \lim_{\epsilon \to 0} f_\epsilon(x) = f(x) \) for all \( x \in \mathbb{R} \).
+
+\end{proof}
+
+
+\section{Question 5}
+
+
+let $f(x) = \begin{cases} \frac{x}{|x|} & x \neq 0 \\ 0 & x = 0 \end{cases}$.1.  Compute the Fourier coefficients of $f$.
+2. prove that $(S_{2N}f)(x) = \frac{2}{\pi} \displaystyle\int_{0}^{x}\cfrac{sin(2Nt)}{sin(t)}dt$ 
+3. prove that $lim_{N \to \infty} (S_{2N}f)(\frac{\pi}{2N}) = \frac{2}{\pi} \displaystyle\int_{0}^{\pi}\frac{sin(t)}{t}dt$
+\begin{proof}
+    
+
+
+Consider the function 
+\[
+f(x) = \begin{cases} 
+\frac{x}{|x|} & x \neq 0, \\
+0 & x = 0 
+\end{cases}.
+\]
+
+1.
+
+The fourier coefficients for a function \(f(x)\) on \([- \pi, \pi]\) 
+
+\[
+a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \, dx,
+\]
+\[
+a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos(nx) \, dx,
+\]
+\[
+b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(nx) \, dx.
+\]
+
+since \(f(x)\) is an odd function, it will have  sine terms (i.e., \(a_n = 0\) for all \(n\)).
+
+computing bn: 
+
+\[
+b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} \frac{x}{|x|} \sin(nx) \, dx.
+\]
+
+split the integral at \(0\), we get:
+
+\[
+b_n = \frac{1}{\pi} \left( \int_{-\pi}^{0} (-\sin(nx)) \, dx + \int_{0}^{\pi} \sin(nx) \, dx \right).
+\]
+
+since \(\frac{x}{|x|}\) is \(-1\) for \(x < 0\) and \(1\) for \(x > 0\),
+
+\[
+b_n = \frac{1}{\pi} \left( -\int_{-\pi}^{0} \sin(nx) \, dx + \int_{0}^{\pi} \sin(nx) \, dx \right).
+\]
+
+then
+\[
+\int_{0}^{\pi} \sin(nx) \, dx = \left[ -\frac{\cos(nx)}{n} \right]_{0}^{\pi} = \frac{2}{n} (1 - (-1)^n).
+\]
+
+thus,
+
+\[
+b_n = \frac{1}{\pi} \left( -\frac{2}{n}(1 - (-1)^n) \right) = \frac{2(1 - (-1)^n)}{\pi n}.
+\]
+
+the fourier series is : 
+
+\[
+f(x) \sim \sum_{n=1}^{\infty} \frac{2(1 - (-1)^n)}{\pi n} \sin(nx).
+\]
+
+2. 
+The partial sum of the Fourier series \(S_{2N}f(x)\) up to the \(2N\)-th term is given by:
+
+\[
+(S_{2N}f)(x) = \sum_{n=1}^{2N} b_n \sin(nx).
+\]
+
+using bn we have 
+
+\[
+(S_{2N}f)(x) = \sum_{n=1}^{2N} \frac{2(1 - (-1)^n)}{\pi n} \sin(nx).
+\]
+
+We notice that terms with even \(n\) will be 0  because \(1 - (-1)^n = 0\) for even \(n\). Hence,
+
+\[
+(S_{2N}f)(x) = \sum_{\substack{n=1 \\ n \text{ odd}}}^{2N} \frac{4}{\pi n} \sin(nx).
+\]
+
+The Dirichlet kernel for the sum of sines is given by:
+
+\[
+D_{2N}(x) = \sum_{n=-2N}^{2N} e^{inx} = \frac{\sin((2N+1)x/2)}{\sin(x/2)}.
+\]
+
+we have:
+
+\[
+S_{2N}f(x) = \frac{2}{\pi} \int_{0}^{x} \frac{\sin(2Nt)}{\sin(t)} \, dt.
+\]
+
+
+3. 
+we show that 
+
+\[
+\lim_{N \to \infty} S_{2N}f\left(\frac{\pi}{2N}\right) = \frac{2}{\pi} \int_{0}^{\pi} \frac{\sin(t)}{t} \, dt.
+\]
+
+we first can substitute \(x = \frac{\pi}{2N}\) into our expression for \(S_{2N}f(x)\):
+
+\[
+S_{2N}f\left(\frac{\pi}{2N}\right) = \frac{2}{\pi} \int_{0}^{\frac{\pi}{2N}} \frac{\sin(2Nt)}{\sin(t)} \, dt.
+\]
+
+As \(N \to \infty\), the upper limit of the integral approaches zero, but the integrand \(\frac{\sin(2Nt)}{\sin(t)}\) approaches the sinc function \(\frac{\sin(t)}{t}\) due to the properties of the Dirichlet kernel.
+
+Thus,
+
+\[
+\lim_{N \to \infty} \frac{2}{\pi} \int_{0}^{\frac{\pi}{2N}} \frac{\sin(2Nt)}{\sin(t)} \, dt = \frac{2}{\pi} \int_{0}^{\pi} \frac{\sin(t)}{t} \, dt.
+\]
+
+
+\end{proof}
+\end{document}

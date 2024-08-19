@@ -1,0 +1,153 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{MnSymbol} 
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\colorlet{LightGray}{black!10}
+\colorlet{LightOrange}{orange!15}
+\colorlet{LightGreen}{green!15}
+\colorlet{LightBlue}{blue!15}
+\colorlet{LightCyan}{cyan!15}
+\colorlet{whiiii}{white!15}
+
+
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\usepackage{tcolorbox} % Add missing package
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+
+\declaretheoremstyle[name=Principle,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{principle}
+\usepackage{tcolorbox} % Add missing package
+\tcolorboxenvironment{principle}{colback=LightGray}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{definition}
+\tcolorboxenvironment{definition}{colback=LightBlue}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+
+\declaretheoremstyle[name=Proof,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proofbox}
+\tcolorboxenvironment{proofbox}{colback=whiiii}
+
+\declaretheoremstyle[name=Axiom,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{axiom}
+\tcolorboxenvironment{axiom}{colback=LightGreen}
+
+\declaretheoremstyle[name=Lemma,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{lemma}
+\tcolorboxenvironment{lemma}{colback=LightCyan}
+
+
+
+
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{Lecture x (June 5)}
+		\HRule{2.0pt} \\ [0.6cm] \LARGE{Comparison Theorem, Triangle Inequalities, Bolzao Weirstrass Thoerem } \vspace*{10\baselineskip}}
+		}
+\date{}
+\author{\textbf{Author} \\ 
+		Tom Jeong
+        }
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------------------------
+\section{q2}
+question: $a_{n+1} = \sin(a_n)$, $a_1 = \frac{1}{100}$
+a. show $(a_n)$ is converging (decreasing)
+b. show $a_n \rightarrow 0$ u can use taylor series 
+
+\begin{proofbox}
+    \begin{align*}
+        b_{n+1} &= b_n - \cfrac{b_n^3}{6} + b_n^4 \\
+        sin(x) &= x - \frac{x^3}{6} + \frac{\sin^{(4)}(c)}{4!} \text{;; taylor series with remainder and $ 0 \leq c \leq x$} \\
+    \end{align*}
+    Now show $a_n \leq b_n$ (squeeze theorem) \\ 
+    \begin{align*}
+        a_1 &= b_1 \\ 
+        a_n &\leq b_n \text{;; induction assume this and show } \\
+        a_{n+1} &\leq b_{n+1}\\ 
+        \sin(a_n) &\leq b_n - \cfrac{b_n^3}{6} + b_n^4 \\
+        \sin(a_n) &= a_n - \cfrac{a_n^3}{6} + \cfrac{\sin(a_n)}{4!}a_n^4 \leq b_n - \cfrac{b_n^3}{6} + b_n^4 \\
+        (b_n - a_n) &- \cfrac{b_n^3}{6}  + \cfrac{a_n^3}{6} + b_n^4 - a_n^4 \geq 0? \\
+    \end{align*}
+
+    let $ l = \lim a_n$ show that $l$ satisfies $l = \sin(l)$
+    $$|l - \sin(l)| = |l - a_{n+1} +a_{n+1} - \sin{l} |\leq |a_{n+1} -l| + |\sin(a_n) -\sin(l)| \leq \epsilon$$ 
+    
+\end{proofbox}
+
+\section{Q4}
+every convergence sequence goes to 1. but $(a_n) $ does not converge. is it possible for $(a_n)$ to be bounded?
+tge answer is no 
+$(a_n)$ will have limsup, lim inf 
+but $a_n$ doesn't converge so limsup $\neq$ lim inf (for not convergence part) 
+for goeing to 1 $liminf \leq 1 \leq limsup$ then we have convergence seequence $a > 1$ which is a contradiction 
+
+
+\section{Q5}
+$(a_n)$ and $C = \{\text{cluster pts of } (a_n)\}$
+$(b_m)$ such that $b_m \in C$
+$\forall M, \exists (n_k) \text{ such that } a_{n_k} \rightarrow b_m$
+b is a cluster pt of $b_m$ meaning b is a cluster pt of $(a_n)$ 
+
+$\exists (b_{m_j}) \leq (b_m) b_{m_j}  \rightarrow b$ \\
+let $\epsilon > 0$ $\exists J$ s.t. $\forall j \geq J$ $|b_{m_j} - b| < \epsilon$
+$$\exists K \text{ st } \forall k \geq K \exists a_{n_k}(m_j) \rightarrow b_{m_j}$$ 
+$$|a_{n_k (m_j)} - b_{m_j} | < \epsilon$$ 
+$$|a_{n_k(m_j)} - b| \leq |a_{n_k(m_j)} - b_{m_j}| + |b_{m_j} - b| < 2\epsilon$$
+
+
+
+
+\end{document}
+
+

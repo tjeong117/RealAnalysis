@@ -1,0 +1,210 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{MnSymbol} 
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\colorlet{LightGray}{black!10}
+\colorlet{LightOrange}{orange!15}
+\colorlet{LightGreen}{green!15}
+\colorlet{LightBlue}{blue!15}
+\colorlet{LightCyan}{cyan!15}
+\colorlet{whiiii}{white!15}
+
+
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\usepackage{tcolorbox} % Add missing package
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+
+\declaretheoremstyle[name=Principle,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{principle}
+\usepackage{tcolorbox} % Add missing package
+\tcolorboxenvironment{principle}{colback=LightGray}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{definition}
+\tcolorboxenvironment{definition}{colback=LightBlue}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+
+\declaretheoremstyle[name=Proof,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proofbox}
+\tcolorboxenvironment{proofbox}{colback=whiiii}
+
+\declaretheoremstyle[name=Axiom,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{axiom}
+\tcolorboxenvironment{axiom}{colback=LightGreen}
+
+\declaretheoremstyle[name=Lemma,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{lemma}
+\tcolorboxenvironment{lemma}{colback=LightCyan}
+
+
+
+
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{Lecture 3 (May 20)}
+		\HRule{2.0pt} \\ [0.6cm] \LARGE{Comparison Theorem, Triangle Inequalities, Bolzao Weirstrass Thoerem } \vspace*{10\baselineskip}}
+		}
+\date{}
+\author{\textbf{Author} \\ 
+		Tom Jeong
+        }
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------------------------
+\section{Comparison Theorem}
+\begin{theorem}[Comparison Theorem]
+    if $(a_n)$, $(b_n)$ are sequences of real numbers such that $a_n \leq b_n$ for all $n$, then 
+    $$\lim_{n \to \infty} a_n \leq \lim_{n \to \infty} b_n$$
+    example: let $k \in \mathbb{N}$, which we will define $(a_n)$, s.t $a_{n+k} - a_n  = c \in \mathbb{R}$. Prove that $lim_{n \to \infty} \frac{a_n}{n} = \frac{c}{k}$. (hint examin case k = 1 first.)
+
+\end{theorem}
+Let $\epsilon > 0, \exists N \in \mathbb{N}$ s.t $\forall n \geq N \implies |a_{n + 1} - a_n  - c| < \epsilon$. we cwant to examin $\frac{a_n }{n} ~ c$ 
+$$|\frac{a_{n+1}} {n} - \frac{a_n}{n} - \frac{c}{n}| < \frac{\epsilon}{n}$$
+
+
+ 
+want to exmine divergent sequences: we say $(a+n)_{n \geq 1}$ diverges to $\infty$ written as $a_n \rightarrow \infty$ if $forall M \in \mathbb{R}, \exists N \in \mathbb{N}$ s.t $a_n > M$ for all $n \geq N$.
+\begin{proofbox}
+    \begin{align*}
+        a{n+1} -an &= c \\
+        \rightarrow a_{n+2} &- a_{n+1} = c \\
+        a_{n+2} &- c - a_{n} = c \\  
+        a_{n+2} &=  a_{n}+ 2c \\
+        \vdots \\ 
+        a_{n+k} &= a_{n} + kc \\
+    \end{align*}
+    for $k \geq 1$, and $forall n \geq N$,
+    we examin $|a_{N+k} - a_N - kc| < k\epsilon$ 
+    $$= |(a_{N +k} - a_{N + a - 1}) + (a_{N + k - 1} - a_{N + k - 2}) + \dots + (a_{N + 1} - a_N) - kc| < k\epsilon$$ 
+    by the giga triangle inequality this is less than equal to $$\leq |a_{N+k} - a_{N+k - 1} - c| + |a_{N+k - 1} - a_{N+k - 2} - c| + \dots + |a_{N+1} - a_N - c| < k\epsilon$$
+    $\forall k \geq 1$ $\longrightarrow |\frac{a_{N+k}}{N+k} - \frac{a_N}{N} - c\frac{k}{N+k}| < k\frac{\epsilon}{N+k}$ and we take limit as $k \to \infty$
+    \\
+    $\forall \delta > 0, \exists M$ s.t. $forall k \geq M$ 
+    \begin{align*}
+        |\cfrac{a_N}{N + k} |&< \delta| \\ 
+        |c \cfrac{k}{N + k} - c| &< \delta \\ 
+        |k \cfrac{\epsilon}{N + k} - \epsilon| &< \delta \\ 
+        \text{note that $|a| - |b| \leq |a-b|$} \\ 
+        &\leq |(b_{N+k} - c) - \cfrac{a_N}{N+k} - (\cfrac{ck}{N +k} -c )| < \cfrac{\epsilon k}{N + k }  \hdots (1*) \\ 
+        |b_{N+k} - c| &- |\cfrac{a_n}{N + k} - (\cfrac{ck}{N + k} - c)| < \cfrac{\epsilon k}{N + k} \\  \\ \\ 
+        (1*) &\rightarrow |b_{N+k} - c| < \cfrac{\epsilon k}{N + k} + \cfrac{a_N}{N + k} + \cfrac{ck}{N + k} - c  \leq \epsilon + 3\delta\\
+    \end{align*}
+\end{proofbox}
+\subsection{Bolzeno - weirstrass Tbeorem}
+\begin{theorem}[Bolzeno - Weirstrass Theorem] 
+    
+    if $(a_n)_{n \geq 1}$ is a sequence in $\mathbb{R}$ s.t. $(a_n)$ is bounded, then $\exists$ a convergent subsequence. 
+\end{theorem}
+\begin{definition}[Subsequence] 
+    
+    $(b_n)_{n \geq 1}$ is a subsequence of $(a_n)_{n \geq 1}$ if $\exists$ a strictly increasing sequence of natural numbers $(n_k)_{k \geq 1}$ s.t. $b_k = a_{n_k}$ for all $k \geq 1$.
+\end{definition}
+\begin{definition}
+    a sequence $(a_n)$ is monotone (stricly) increaseing if $a_{n+1} \geq a_n$ for all $n \geq 1$ (strictly increasing if $a_{n+1} > a_n$ for all $n \geq 1$).
+
+\end{definition}
+it is useful for the monotone convergence theorem. 
+\begin{theorem}[Monotone Convergence Theorem] 
+    
+    if $(a_n)_{n \geq 1}$ is a monotone increasing sequence in $\mathbb{R}$ that is \textbf{bounded above}, then $(a_n)$ has a finite limit. (convergence)
+\end{theorem}
+Consider set $E = {a_1, a_2, \dots}$, and $E$ is bounded above, then $sup(E)$ exists. We will define $a = \sup(E)$ \\
+    Let $\epsilon > 0$ and a is the supremum implies that $\exists a_N \in E$ s.t. $a - \epsilon < a_N \leq a$ \\
+    in order to prove this we want to end up with the equation $-\epsilon < a - a_N < 0 < \epsilon$ \\
+    \begin{align*}
+        a-\epsilon \leq a_n \leq a \text{,     }\forall n \geq N \text{  (as $a_n$ is increasing)}\\ 
+        \rightarrow |a_n - a| \leq \epsilon \text{,     }\forall n \geq N \text{  (as $a_n$ is increasing)}\\
+    \end{align*}
+
+
+\section{Proof of Bolzao -Weirstrass Theorem} 
+We will prove the theorem until we need a lemma and we will then introduce couple of lemmas. WE  can have some simple observations. First, observe that if $E = A \cupdot B$ (This means this is a disjoint union). And $(a_n)$ has values in $E$ which implies that $a_n \in E|  \forall n$ 
+
+$$\exists M \in \mathbb{R} \text{ s.t. } |a_n| \leq M \text{,     }\forall n \geq 1$$
+which implies that $a_n$ must be in A or initinite numbers in B: if not, only fininte number of terms in A and B which is a contradiction. $$I_o = [-M, M]$$ observe that $I_o =[-M, 0] \cup [0, M] \rightarrow$ there is infinite nuber of terms in one of these call that $I_1$. Then $I_1 - =[-M, 0] \text{ or } [0, M]$. \\ 
+Inductively obtain $I_n$:  $I_{n+1} = I_n - \text{finite number of terms}$, $I_{n+1}$ is a closed interval. 
+\\ 
+$M(I_n) = \cfrac{2M}{2^n}$ (M here means 'the measure of')\\ 
+for each $n$, we can take an element of $\{a_1, \dots\}$ which is in $I_n$ which satisfies: 
+\begin{enumerate}
+    \item $a_{n_m} \in I_M$
+    \item $n_m > n_{m-1}$
+\end{enumerate}
+Consider a subsequence $(a_{n_m})_{m \geq 1}$ s.t. $a_{n_m} \in I_m$ for all $m \geq 1$.
+\underline{Claim:} $(a_{n_m})_{m \geq 1}$ is a Cauchy sequence (converges).
+\begin{definition}[Cauchy Sequence] 
+    
+    $(a_n)_{n \geq 1}$ is a Cauchy sequence if $\forall \epsilon > 0, \exists N \in \mathbb{N}$ s.t. $|a_n - a_m| < \epsilon$ for all $n, m \geq N$.
+    
+\end{definition}
+
+Here is an important lemma for the Bolzab - Weirstrass 
+\begin{lemma}[Nested Interval Property]
+    If $(I_n)$ is a sequence of Intervals such that 
+    \begin{enumerate}
+        \item $I_{n+1} \subset I_n$ for all $n \geq 1$
+        \item $I_n$ is bdd 
+        \item $I_n$ if closed 
+    \end{enumerate}
+    $$\rightarrow \bigcap_{n\in \mathbb{N}} I_n \neq \emptyset$$
+    More over if $\lim_{n \to \infty} M(I_n) = \lim_{n \to \infty} (b_n - a_n) = 0$ then $\bigcap_{n \in \mathbb{N}} I_n = \{c\}$ where $c$ is a single point.
+
+\end{lemma}
+\begin{align*}
+    \exists a &\in \bigcap_{n \in \mathbb{N}} I_n \\ 
+    &\text{consider  } |a_{n_m} - a| \leq \cfrac{2M}{2^m} \\
+    &a\in I_m \text{,  and   } a_{n_m} \in I_m \text{,     } \forall m \geq 1 \\
+\end{align*}
+
+\end{document}
+
+

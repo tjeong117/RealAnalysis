@@ -1,0 +1,238 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\colorlet{LightGray}{black!10}
+\colorlet{LightOrange}{orange!15}
+\colorlet{LightGreen}{green!15}
+\colorlet{LightBlue}{blue!15}
+\colorlet{LightCyan}{cyan!15}
+
+
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\usepackage{tcolorbox} % Add missing package
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{definition}
+\tcolorboxenvironment{definition}{colback=LightBlue}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+
+\declaretheoremstyle[name=Proof,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proofbox}
+\tcolorboxenvironment{proofbox}{colback=LightOrange}
+
+\declaretheoremstyle[name=Axiom,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{axiom}
+\tcolorboxenvironment{axiom}{colback=LightGreen}
+
+\declaretheoremstyle[name=Lemma,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{lemma}
+\tcolorboxenvironment{lemma}{colback=LightCyan}
+
+
+
+
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{Lecture 1 (May 13)}
+		\HRule{2.0pt} \\ [0.6cm] \LARGE{Fields, Induction, Binomial Theorem: \textit{TEXTBOOK pg 20 - approx 16 (up to 1.2 )}} \vspace*{10\baselineskip}}
+		}
+\date{}
+\author{\textbf{Author} \\ 
+		Tom Jeong
+        }
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------------------------
+
+\section{Natural Numbers and Real Numbers}
+Natural numbers are a set of positive integers: $$\mathbb{N} = \{1, 2, 3, 4, \dots \}$$
+Real numbers are a set of all rational and irrational numbers: $$\mathbb{R} = \mathbb{Q} \cup \mathbb{I}$$
+\subsection{Addition and Multiplication as a function on $\mathbb{R}$}
+\begin{enumerate}
+    \item Addition: $+ : \mathbb{R}^2 \rightarrow \mathbb{R}$
+    \item Multiplication: $\cdot : \mathbb{R}^2 \rightarrow \mathbb{R}$
+\end{enumerate}
+\section{Fields}
+\begin{axiom}[Field Axiom]
+    A field is a set of numbers $\mathbb{F}$ with two operations: addition and multiplication. A field must satisfy the following properties:
+    \begin{enumerate}
+        \item Closure property under addition and multiplication: $a + b \in \mathbb{F}$ and $a \cdot b \in \mathbb{F}$
+        \item Associative: $(a + b) + c = a + (b + c)$ and $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+        \item Commutative: $a + b = b + a$ and $a \cdot b = b \cdot a$
+        \item Distributive: $a \cdot (b + c) = a \cdot b + a \cdot c$
+        \item Unique Additive Identity: There exists a unique element $0 \in \mathbb{F} \text{  such that } \forall x \in \mathbb{F}$, $0 + x = x$.
+        \item Unique Multiplicative Identity: There exists a unique element $1 \in \mathbb{F} \text{  such that } \forall x \in \mathbb{F}$, $1 \cdot x = x$.
+        \item Additive Inverse: For every $x \in \mathbb{F}$, there exists a unique element $-x \in \mathbb{F} \text{  such that } x + (-x) = 0$.
+        \item Multiplicative Inverse: For every $x \in \mathbb{F}, x \not = 0$, there exists a unique element $x^{-1} \in \mathbb{F} \text{  such that } x \cdot x^{-1} = 1$.
+    \end{enumerate}
+\end{axiom}
+A field is a set of numbers with two operations: addition and multiplication. A field must satisfy the following properties:
+\begin{enumerate}
+    \item Associative: $(a + b) + c = a + (b + c)$ and $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+    \item Commutative: $a + b = b + a$ and $a \cdot b = b \cdot a$
+    \item Distributive: $a \cdot (b + c) = a \cdot b + a \cdot c$
+\end{enumerate}
+We can see that $\mathbb{R}$ is a field since it satisfies all three properties. 
+
+\subsection{Additive Identity}
+There exists a unique element $0 \in \mathbb{R} \text{  such that } \forall x \in \mathbb{R}$, $0 + x = x$. 
+\subsection{Multiplicative Identity}
+There exists a unique element $1 \in \mathbb{R} \text{  such that } \forall x \in \mathbb{R}$, $1 \cdot x = x$.
+\subsection{Additive Inverse}
+For every $x \in \mathbb{R}$, there exists a unique element $-x \in \mathbb{R} \text{  such that } x + (-x) = 0$.
+
+\subsection{Multiplicative Inverse}
+For every $x \in \mathbb{R}$, there exists a unique element $x^{-1} \in \mathbb{R} \text{  such that } x \cdot x^{-1} = 1$.
+
+Using these additional properties, we can prove that $(-1)^2 = 1$.
+\section{Proof: $(-1)^2 = 1$}
+\begin{proofbox}
+Let $1_L$ be the multiplicative identity and $-1$ be the additive inverse of the multiplicative identity. We want to show that $\forall x \in \mathbb{R} : (-1) \cdot (-1) x = x$. Then by the uniqueness of the multiplicative identity, $(-1)^2$ must be the multiplicative identity. We will show:
+\begin{align*}
+    (-1)^2x  &= x \\
+    (-1) + (1) &= 0 \\ 
+    ((-1) + 1) \cdot x &= 0\cdot x \\ 
+    (-1) \cdot x + 1 \cdot x &= 0 \\ 
+    (-1) \cdot x+ x &= 0 \\ 
+    (-1)^2 \cdot x - x &= 0 \\ 
+    (-1)^2 \cdot x -x + x&= 0 + x \\ 
+    (-1)^2 \cdot x &= x \\
+\end{align*}
+Thus we have shown that $(-1)^2$ is the multiplicative identity and thus by the uniqueness of the multiplicative identity, $(-1)^2$ must be 1.
+\end{proofbox}
+
+\section{Ordered Real Numbers}
+\begin{definition}
+    $$<: \mathbb{R}^2 \longrightarrow \{\textit{True},\textit{False} \} \text{ (or using binary) } \{0, 1\}$$
+\end{definition}
+The set of real numbers $\mathbb{R}$ is ordered by a relation $<: \mathbb{R}^2 \rightarrow \{0, 1\}$ with the following properties:
+\begin{enumerate}
+    \item Trichotomy: $\forall x, y \in \mathbb{R} : (x < y) \lor (x = y) \lor (y < x)$
+    \item Transitivity: $\forall x, y, z \in \mathbb{R} : (x < y) \land (y < z) \rightarrow (x < z)$
+    \item Additivity: $\forall x, y, z \in \mathbb{R} : (x < y) \rightarrow (x + z < y + z)$
+    \item Multiplicative: $\forall x, y, z \in \mathbb{R} : (x < y) \land (0 < z) \rightarrow (x \cdot z < y \cdot z)$ and $(x < y) \land (z < 0) \rightarrow (y \cdot z < x \cdot z)$
+    
+\end{enumerate}
+
+\section{Prove the Binomial Expansion Formula}
+The binomial expansion formula states that $$(a + b)^n = \sum_{i = 0}^{n} \binom{n}{i}a^{n-i} b^{i}$$
+\begin{axiom}
+    Given any non-empty subset $E \subseteq \mathbb{N}$, there is a least element $\alpha \in E \text{ such that } \alpha \leq x \text{   } \forall x \in E$.
+\end{axiom}
+
+\begin{theorem}[Theorem of Induction]
+Consider a statement dependent on $\mathbb{N}$: $$S: \mathbb{N} \longrightarrow \{0, 1\}$$
+If: \\ 
+\begin{enumerate}
+    \item $S(1) = 1$ 
+    \item $\forall n \in \mathbb{N} : S(n) \rightarrow S(n+1)$
+    \item then $\forall n \in \mathbb{N} : S(n)$
+\end{enumerate}
+\begin{proofbox}
+Consider $E = \{n \in \mathbb{N} : S(n) = 0\}$.
+ Suppose $E \neq \emptyset$. 
+ Then by the axiom of $\mathbb{N}$, 
+ there is a least element $\alpha \in E$.
+  $\alpha \neq 1$ because $S(1) = 1$. 
+  Consider $\alpha - 1$. $S(\alpha - 1)$ 
+  must be true because $\alpha$ is the least element of $E$.
+   Because $S(\alpha - 1) \rightarrow S(\alpha)$ and $S(\alpha) = 0$.
+    Thus our supposition is wrong. Therefore $E = \emptyset$ and $\forall n \in \mathbb{N} : S(n)$. Q.E.D
+
+\end{proofbox}
+\end{theorem}
+
+\begin{lemma}[Binomial Theorem]
+    $$\binom{n+1}{k} = \binom{n}{k} + \binom{n}{k-1}$$
+\end{lemma}
+N ow we can prove the binomial expansion formula using induction.
+\subsection{Proof of the Binomial Theorem by Induction}
+\begin{proofbox}
+We will prove the binomial theorem using mathematical induction. \\ 
+\textit{Base Case:} For $n = 0$, the binomial theorem states that $(a + b)^0 = 1$. This is true since any number raised to the power of 0 is equal to 1.
+
+\textit{Inductive Hypothesis:} Assume that the binomial theorem holds for some positive integer $k$, i.e., $(a + b)^k = \sum_{i=0}^{k} \binom{k}{i} a^{k-i} b^i$.
+
+\textit{Inductive Step:} We need to show that the binomial theorem holds for $k+1$, i.e., $(a + b)^{k+1} = \sum_{i=0}^{k+1} \binom{k+1}{i} a^{k+1-i} b^i$.
+
+Expanding $(a + b)^{k+1}$ using the distributive property, we get:
+$$(a + b)^{k+1} = (a + b)(a + b)^k$$
+
+Using the inductive hypothesis, we can rewrite this as:
+$$(a + b)^{k+1} = (a + b) \left(\sum_{i=0}^{k} \binom{k}{i} a^{k-i} b^i\right)$$
+
+Expanding the product, we have:
+$$(a + b)^{k+1} = \sum_{i=0}^{k} \binom{k}{i} a^{k+1-i} b^i + \sum_{i=0}^{k} \binom{k}{i} a^{k-i} b^{i+1}$$
+
+Now, let's focus on the terms in the second sum. We can rewrite them as:
+$$\sum_{i=0}^{k} \binom{k}{i} a^{k-i} b^{i+1} = \sum_{i=1}^{k+1} \binom{k}{i-1} a^{k+1-i} b^i$$
+
+Combining the two sums, we get:
+$$(a + b)^{k+1} = \sum_{i=0}^{k+1} \left(\binom{k}{i} + \binom{k}{i-1}\right) a^{k+1-i} b^i$$
+
+Using the lemma $\binom{n+1}{k} = \binom{n}{k} + \binom{n}{k-1}$, we can simplify the expression further:
+$$(a + b)^{k+1} = \sum_{i=0}^{k+1} \binom{k+1}{i} a^{k+1-i} b^i$$
+
+This completes the inductive step.
+
+By the principle of mathematical induction, the binomial theorem holds for all positive integers $n$.
+
+Therefore, the binomial expansion formula $$(a + b)^n = \sum_{i = 0}^{n} \binom{n}{i}a^{n-i} b^{i}$$ is proven.
+\end{proofbox}
+
+\section{Last Property of $\mathbb{R}$}
+Given any bounded non-empty subset $E \subseteq \mathbb{R}$, there exists a supremum (the least upper bound). (continued next lecture )
+% Maybe I need to add one more part: Examples.
+% Set style and colour later.
+
+
+\end{document}

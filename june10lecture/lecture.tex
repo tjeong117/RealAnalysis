@@ -1,0 +1,169 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\colorlet{LightGray}{black!10}
+\colorlet{LightOrange}{orange!15}
+\colorlet{LightGreen}{green!15}
+\colorlet{LightBlue}{blue!15}
+\colorlet{LightCyan}{cyan!15}
+
+
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\usepackage{tcolorbox} % Add missing package
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{definition}
+\tcolorboxenvironment{definition}{colback=LightBlue}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+
+\declaretheoremstyle[name=Proof,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proofbox}
+\tcolorboxenvironment{proofbox}{colback=LightOrange}
+
+\declaretheoremstyle[name=Axiom,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{axiom}
+\tcolorboxenvironment{axiom}{colback=LightGreen}
+
+\declaretheoremstyle[name=Lemma,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{lemma}
+\tcolorboxenvironment{lemma}{colback=LightCyan}
+
+
+
+
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{June  10}
+		\HRule{2.0pt} \\ [0.6cm] \LARGE{Fields, Induction, Binomial Theorem: \textit{TEXTBOOK pg 20 - approx 16 (up to 1.2 )}} \vspace*{10\baselineskip}}
+		}
+\date{}
+\author{\textbf{Author} \\ 
+		Tom Jeong
+        }
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------------------------
+
+\section{question 2 in exam }
+$$x = \left\{\sum_{k = 1}^{\infty} a_k b_k : b_k = \prod_{j = 1}^{k} \cfrac{1}{(j+2)^2}, a_k \in \{1, 2, ..., (k+2)^2 - 1 \}\right\} $$
+
+\section{continuity}
+sequences are $a_0: \mathbb{N} \to \mathbb{R}$ \\ 
+functions: $f: \mathbb{R} \to \mathbb{R}$ \\
+\begin{definition}
+    f is continuous at x. if $\forall \epsilon > 0o, \exists \delta > 0$ such that $|x - y| < \delta \implies |f(x) - f(y)| < \epsilon$ \\
+        in $\mathbb{R}^2$ then, $y: \mathbb{R}^2 \to \mathbb{R}^2$ then $y$ is continuous at $x \in \mathbb{R}^2$ if $\forall \epsilon > 0, \exists \delta > 0$ such that $||x - y|| < \delta \implies ||f(x) - f(y)|| < \epsilon$
+    \\ 
+    we say $f$ is continuous on set $E$ if $f$ is cont. at all $x \in E$ 
+\end{definition}
+\subsection{Uniform continuity} 
+There is a stronger sense of continuity called uniform continsuity. 
+\begin{definition}
+    we say a function $f$ is uniformly continuous on a set $E$ if, $\forall \epsilon > 0, \exists \delta > 0$ such that $ \forall x, y \in E, 
+    |x - y| < \delta \implies |f(x) - f(y)| < \epsilon$
+\end{definition}
+What is the difference between continuity and uniform continuity? 
+\begin{itemize}
+    \item continuity: $\forall \epsilon > 0, \exists \delta > 0$ such that $|x - y| < \delta \implies |f(x) - f(y)| < \epsilon$ \\ \textbf{\textit{this is the same thing as saying}}, $\forall (x_n)$ such that $x_n \to x, \rightarrow f(x_n) \rightarrow f(x)$
+    \item uniform continuity: $\forall \epsilon > 0, \exists \delta > 0$ such that $ \forall x, y \in E, 
+    |x - y| < \delta \implies |f(x) - f(y)| < \epsilon$ \\ same as \textbf{\textit{if $(x_n)$ is cauchy, then $(f(x_n))$ is cauchy}}
+    
+\end{itemize}
+\textit{quick note:} a cauchy sequence is a sequence that is converging. 
+\section{Continuity and sequences}
+\begin{theorem}
+    if $f$ is continuous at $x$, then consider any sequence $(x_n)$ such that $x_n \to x$, then $f(x_n) \to f(x)$ we wabt ib $N st \forall n \geq N, |f(x_n) - f(x)| < \epsilon$
+\end{theorem}
+\begin{proof}
+    proving $\rightarrow$ direction:
+    \begin{align*}
+        \exists N \text{ such that } &\forall n \geq N, |x_n - x| < \delta  \\ 
+        \exists \delta > 0 \text{ such that  if } |x - y| < \delta &\implies |f(x) - f(y)| < \epsilon \\ 
+        &\text{we verified that } |f(x_n) - f(x)| < \epsilon
+    \end{align*}
+    proving $\leftarrow$ direction:
+    \begin{align*}
+        \text{assume } &f(x_n) \to f(x) \\ 
+        \text{wts } &x_n \to x \\ 
+        \text{assume } &x_n \text{ does not converge to x} \\ 
+        \text{then } &\exists \epsilon > 0 \text{ such that } \forall N, \exists n \geq N \text{ such that } |x_n - x| \geq \epsilon \\ 
+        \text{then } &\exists \epsilon > 0 \text{ such that } \forall N, \exists n \geq N \text{ such that } |f(x_n) - f(x)| \geq \epsilon \\ 
+        \text{contradiction } &\text{since } f(x_n) \to f(x) \text{ and } |f(x_n) - f(x)| < \epsilon
+    \end{align*}
+\end{proof}
+\textbf{textbook 3.25 - 3.38 lemma i think}
+
+\section{Properties of Continuous Functions}
+\begin{definition} [right limit] 
+    $\lim_{x \to a^{+}} f(x) = R \iff \forall \epsilon > 0 \exists \delta > 0$ such that  for $x > a, |x - a| < \delta \implies |f(x) - R| < \epsilon$ (the absolute value is not necessary) \\ 
+    if a is not a natural number, we can write $\lim_{n \to \infty} a_n = a$ $\forall \epsilon > 0, \exists N \in \mathbb{N}$ such that $n \geq N \implies |a_n - a| < \epsilon$
+\end{definition}
+\begin{definition} [left limit]
+    $\lim_{x \to a^{-}} f(x) = L \iff \forall \epsilon > 0 \exists \delta > 0$ such that  for $x < a, |x - a| < \delta \implies |f(x) - L| < \epsilon$ (the absolute value is not necessary) \\
+    
+\end{definition}
+Suppose I is closed and bounded: 
+\begin{theorem}[extreme value theorem]
+    if $f: I \to \mathbb{R}$ is continuous, then $f$ attains a maximum and minimum on $I$
+\end{theorem}
+\begin{proof}proof of the extreme value theorem
+    \begin{align*}
+        \text{let } &M = \sup\{f(x) : x \in I\} \text{ and } m = \inf\{f(x) : x \in I\} \\ 
+        \text{wts } &\exists x_1, x_2 \in I \text{ such that } f(x_1) = M \text{ and } f(x_2) = m \\ 
+        \text{assume } &M \neq f(x) \forall x \in I \\ 
+        \text{then } &\exists \epsilon > 0 \text{ such that } \forall n \in \mathbb{N}, \exists x_n \in I \text{ such that } f(x_n) > M - \cfrac{1}{n} \\ 
+        \text{then } &\exists (x_n) \text{ such that } x_n \to a \text{ and } f(x_n) \to M \\ 
+        \text{then } &f(a) = M \text{ and } a \in I \text{ since I is closed} \\ 
+        \text{contradiction } &\text{since } M = \sup\{f(x) : x \in I\} \text{ and } f(a) = M
+    \end{align*}
+\end{proof}
+\end{document}

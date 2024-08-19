@@ -1,0 +1,8 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}$\mathbb {R}$ is Complete}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}prove the supremum of [0,1] is 1}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}prove the supremum of [0,1) is 1}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Completeness of $\mathbb {R}$}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Prove that $\sqrt {2}$ is not rational}{5}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Approximation theorem for supremums}{5}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Archimedian Principle}{6}{subsection.1.6}%

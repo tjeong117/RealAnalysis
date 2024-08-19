@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Remarks on supremums and bounded above}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Upper Bound}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Supremum}{3}{subsection.1.2}%

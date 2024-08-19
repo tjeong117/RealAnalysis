@@ -1,0 +1,241 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+
+\colorlet{LightGray}{black!10}
+\colorlet{LightOrange}{white!15}
+\colorlet{LightGreen}{green!15}
+\colorlet{LightBlue}{blue!15}
+\colorlet{LightCyan}{cyan!15}
+
+
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\usepackage{tcolorbox} % Add missing package
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{definition}
+\tcolorboxenvironment{definition}{colback=LightBlue}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+
+\declaretheoremstyle[name=Proof,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proofbox}
+\tcolorboxenvironment{proofbox}{colback=LightOrange}
+
+\declaretheoremstyle[name=Axiom,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{axiom}
+\tcolorboxenvironment{axiom}{colback=LightGreen}
+
+\declaretheoremstyle[name=Lemma,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{lemma}
+\tcolorboxenvironment{lemma}{colback=LightCyan}
+
+
+
+
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{Homework 4 Tom (wonsuk) Jeong  }
+\maketitle
+
+\section{Question 1}
+Prove that \(\lim_{p \to \infty} \|f\|_{L^p(\mathbb{R})} = \|f\|_{C^0(\mathbb{R})}\), assuming \(f\) is such
+that both norms exist.
+\textbf{Proof:}
+
+\[
+\|f\|_{L^p(\mathbb{R})} = \left( \int_{\mathbb{R}} |f(x)|^p \, dx \right)^{1/p}
+\]
+
+As \(p \to \infty\),
+
+\[
+\left( \int_{\mathbb{R}} |f(x)|^p \, dx \right)^{1/p} \approx \left( \sup_{x \in \mathbb{R}} |f(x)|^p \right)^{1/p} = \sup_{x \in \mathbb{R}} |f(x)| = \|f\|_{C^0(\mathbb{R})}
+\]
+
+Thus,
+
+\[
+\lim_{p \to \infty} \|f\|_{L^p(\mathbb{R})} = \|f\|_{C^0(\mathbb{R})}
+\]
+
+\section{Question 2} Prove that if \(E \subseteq \mathbb{R}\) is connected, then so is \(E^0\). Prove that
+this is false if you replace \(\mathbb{R}\) with \(\mathbb{R}^2\).
+\textbf{Proposition 1:} If \( E \subseteq \mathbb{R} \) is connected, then so is \( E^0 \).
+
+\textbf{Proof:} Assume \( E \subseteq \mathbb{R} \) is connected. To prove \( E^0 \) is connected, assume the contrary, i.e., suppose \( E^0 \) is not connected. Then there exist disjoint non-empty open sets \( U \) and \( V \) in \( \mathbb{R} \) such that
+\[
+E^0 = (U \cap E^0) \cup (V \cap E^0)
+\]
+and
+\[
+(U \cap E^0) \cap (V \cap E^0) = \emptyset.
+\]
+
+Since \( U \) and \( V \) are open and \( E^0 \subseteq E \subseteq \mathbb{R} \), we have that \( U \cap E \) and \( V \cap E \) are disjoint open sets in \( E \). Moreover,
+\[
+E = (U \cap E) \cup (V \cap E).
+\]
+
+Given that \( E \) is connected and we have a decomposition of \( E \) into two disjoint non-empty open sets, this leads to a contradiction. Therefore, our initial assumption that \( E^0 \) is not connected must be false. Hence, \( E^0 \) is connected.
+
+\textbf{Proposition 2:} The statement is false if you replace \( \mathbb{R} \) with \( \mathbb{R}^2 \).
+
+\textbf{Proof:} Consider \( E \subseteq \mathbb{R}^2 \) as the set defined by
+\[
+E = \{(x, y) \in \mathbb{R}^2 \mid x^2 + y^2 \leq 1\}.
+\]
+\( E \) is connected because it is the closed unit disk in \( \mathbb{R}^2 \).
+
+Now consider \( E^0 \):
+\[
+E^0 = \{(x, y) \in \mathbb{R}^2 \mid x^2 + y^2 < 1\}.
+\]
+\( E^0 \) is the open unit disk in \( \mathbb{R}^2 \), which is also connected.
+
+To show that the statement is false in general, consider \( E \subseteq \mathbb{R}^2 \) defined by
+\[
+E = \{(x, y) \in \mathbb{R}^2 \mid y = 0 \text{ or } y = 1\}.
+\]
+\( E \) is connected since it is the union of two horizontal lines which are connected in \( \mathbb{R} \), making \( E \) connected in \( \mathbb{R}^2 \).
+
+However, \( E^0 \) is given by:
+\[
+E^0 = \emptyset,
+\]
+because there are no interior points in \( E \) in \( \mathbb{R}^2 \). The empty set is not connected, hence showing that \( E^0 \) is not connected in \( \mathbb{R}^2 \). Thus, the statement is false in \( \mathbb{R}^2 \).
+
+
+\section{Question 3}
+ Suppose \( E \subseteq \mathbb{R}^n \) is connected, and \( f : E \to \mathbb{R} \) is continuous.
+Suppose also that there exist \( a, b \in E \) such that \( f(a) \neq f(b) \), and \( y \in \mathbb{R} \) is
+such that \( f(a) \leq y \leq f(b) \). Prove that there exists \( c \in E \) such that \( f(c) = y \).
+
+\textbf{Proof:} 
+
+Since \( f \) is continuous on the connected set \( E \), the image \( f(E) \subseteq \mathbb{R} \) is an interval (by the intermediate value theorem).
+
+Given \( a, b \in E \) such that \( f(a) \leq y \leq f(b) \) and \( f(a) \neq f(b) \), without loss of generality, assume \( f(a) < f(b) \).
+
+Define the sets:
+\[
+A = \{x \in E \mid f(x) \leq y\}, \quad B = \{x \in E \mid f(x) \geq y\}.
+\]
+
+Both \( A \) and \( B \) are non-empty since \( a \in A \) and \( b \in B \).
+
+Also, \( A \) and \( B \) are closed in \( E \) because \( f \) is continuous.
+
+Since \( E \) is connected, \( A \cap B \neq \emptyset \).
+
+Therefore, there exists \( c \in E \) such that \( c \in A \cap B \).
+
+Thus, \( f(c) = y \)
+
+
+\section{qestion 4}
+\textbf{Definition:} Let \( n \in \mathbb{N} \). A subset \( E \subseteq \mathbb{R}^n \) is sequentially compact if every sequence \( \{x_k\} \) in \( E \) has a convergent subsequence whose limit is in \( E \).
+
+\begin{enumerate}
+    \item \textbf{1:} Every compact set is sequentially compact.
+    
+    \textbf{Proof:} Let \( E \subseteq \mathbb{R}^n \) be compact. Consider any sequence \( \{x_k\} \) in \( E \). Since \( E \) is compact, \( E \) is both closed and bounded. By the Bolzano-Weierstrass theorem, every bounded sequence in \( \mathbb{R}^n \) has a convergent subsequence. Therefore, there exists a subsequence \( \{x_{k_j}\} \) of \( \{x_k\} \) that converges to some limit \( x \in \mathbb{R}^n \). Since \( E \) is closed, \( x \in E \). Thus, \( E \) is sequentially compact.
+    
+    \item \textbf{2:} Every sequentially compact set is closed and bounded.
+    
+    \textbf{Proof:} Let \( E \subseteq \mathbb{R}^n \) be sequentially compact. To show that \( E \) is bounded, assume the contrary. Suppose \( E \) is unbounded. Then there exists a sequence \( \{x_k\} \) in \( E \) such that \( \|x_k\| \to \infty \) as \( k \to \infty \). Since \( E \) is sequentially compact, there exists a convergent subsequence \( \{x_{k_j}\} \) with limit \( L \in E \). However, \( \|x_{k_j}\| \to \infty \) contradicts the boundedness of the convergent subsequence. Therefore, \( E \) must be bounded.
+    
+    To show that \( E \) is closed, let \( \{x_k\} \) be a sequence in \( E \) converging to some \( x \in \mathbb{R}^n \). Since \( E \) is sequentially compact, there exists a convergent subsequence \( \{x_{k_j}\} \) with limit \( L \in E \). Since \( \{x_k\} \) converges to \( x \) and any subsequence of a convergent sequence converges to the same limit, we have \( L = x \). Thus, \( x \in E \), and \( E \) is closed.
+    
+    \item \textbf{3:} \( E \subseteq \mathbb{R}^n \) is sequentially compact if and only if \( E \) is compact.
+    
+    \textbf{Proof:} (\(\Rightarrow\)) Assume \( E \subseteq \mathbb{R}^n \) is sequentially compact. By Proposition 2, \( E \) is closed and bounded. Since \( \mathbb{R}^n \) is a metric space, the Heine-Borel theorem states that a subset of \( \mathbb{R}^n \) is compact if and only if it is closed and bounded. Therefore, \( E \) is compact.
+    
+    (\(\Leftarrow\)) Assume \( E \subseteq \mathbb{R}^n \) is compact. By Proposition 1, every compact set is sequentially compact. Thus, \( E \) is sequentially compact.
+\end{enumerate}
+
+\section{question 5}
+\textbf{Question 5:} Let \(X\) and \(Y\) be metric spaces, \(E \subseteq X\), and \(f : X \to Y\).
+
+\begin{enumerate}
+    \item \textbf{Proposition:} If \(f\) is uniformly continuous on \(E\) and \(\{x_n\} \subseteq E\) is Cauchy in \(X\), then \(\{f(x_n)\}\) is Cauchy in \(Y\).
+    
+    \textbf{Proof:}
+    \[
+    f \text{ uniformly continuous on } E \implies \forall \epsilon > 0, \exists \delta > 0 : d_X(x,y) < \delta \implies d_Y(f(x), f(y)) < \epsilon.
+    \]
+    \[
+    \{x_n\} \text{ Cauchy in } X \implies \forall \epsilon > 0, \exists N \in \mathbb{N} : \forall m, n \geq N, d_X(x_m, x_n) < \delta.
+    \]
+    \[
+    \implies d_Y(f(x_m), f(x_n)) < \epsilon.
+    \]
+    \[
+    \therefore \{f(x_n)\} \text{ is Cauchy in } Y.
+    \]
+    
+    \item \textbf{Proposition:} Suppose \(D\) is a dense subspace of \(X\) (\(D \subset X\) and \(\overline{D} = X\)). If \(Y\) is complete and \(f : D \to Y\) is uniformly continuous on \(D\), then \(f\) has a continuous extension to \(X\). 
+    
+    \textbf{Proof:}
+    \[
+    \text{Define } g : X \to Y \text{ by } g(x) = \lim_{n \to \infty} f(x_n),
+    \]
+    where \(\{x_n\} \subseteq D\) and \(x_n \to x\).
+    
+    To show \(g\) is well-defined, let \(\{x_n\}\) and \(\{y_n\}\) be sequences in \(D\) such that \(x_n \to x\) and \(y_n \to x\).
+    \[
+    f \text{ uniformly continuous on } D \implies \forall \epsilon > 0, \exists \delta > 0 : d_X(u, v) < \delta \implies d_Y(f(u), f(v)) < \epsilon.
+    \]
+    \[
+    x_n \to x \text{ and } y_n \to x \implies \exists N \in \mathbb{N} : \forall n \geq N, d_X(x_n, x) < \frac{\delta}{2} \text{ and } d_X(y_n, x) < \frac{\delta}{2}.
+    \]
+    \[
+    \implies d_X(x_n, y_n) \leq d_X(x_n, x) + d_X(x, y_n) < \delta.
+    \]
+    \[
+    \implies d_Y(f(x_n), f(y_n)) < \epsilon.
+    \]
+    \[
+    \therefore \{f(x_n)\} \text{ and } \{f(y_n)\} \text{ are Cauchy in } Y.
+    \]
+    Since \(Y\) is complete, \(\{f(x_n)\}\) and \(\{f(y_n)\}\) converge to the same limit, i.e., \(g\) is well-defined.
+
+    To show \(g\) is continuous, let \(x_k \to x\) in \(X\). Then for any \(\epsilon > 0\), there exists \(\delta > 0\) such that for all \(u, v \in D\),
+    \[
+    d_X(u, v) < \delta \implies d_Y(f(u), f(v)) < \epsilon.
+    \]
+    Choose \(u = x_k\) and \(v = x\),
+    \[
+    d_X(x_k, x) < \delta \implies d_Y(g(x_k), g(x)) < \epsilon.
+    \]
+    Thus, \(g\) is continuous.
+\end{enumerate}
+\end{document}

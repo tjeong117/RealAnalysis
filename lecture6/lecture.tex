@@ -1,0 +1,176 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\colorlet{LightGray}{black!10}
+\colorlet{LightOrange}{orange!15}
+\colorlet{LightGreen}{green!15}
+\colorlet{LightBlue}{blue!15}
+\colorlet{LightCyan}{cyan!15}
+
+
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\usepackage{tcolorbox} % Add missing package
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{definition}
+\tcolorboxenvironment{definition}{colback=LightBlue}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+
+\declaretheoremstyle[name=Proof,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proofbox}
+\tcolorboxenvironment{proofbox}{colback=LightOrange}
+
+\declaretheoremstyle[name=Axiom,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{axiom}
+\tcolorboxenvironment{axiom}{colback=LightGreen}
+
+\declaretheoremstyle[name=Lemma,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{lemma}
+\tcolorboxenvironment{lemma}{colback=LightCyan}
+
+
+
+
+
+\setstretch{1.0}
+\geometry{
+    textheight=9in,
+    textwidth=7in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{Lecture NUMBER (DATE)}
+		\HRule{2.0pt} \\ [0.6cm] \LARGE{} \vspace*{10\baselineskip}}
+		}
+\date{}
+\author{\textbf{Author} \\ 
+		Tom Jeong
+        }
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------------------------
+\section{Completion}
+$R \approxeq \text{Completion of } Q$ \\
+w.r.t $e / \sim $ $= \{[(a_n) ] : a_n \in e \} $ where $e = \{ (a_n) : a_n \in Q \}$ and $(a_n)$ is cauchy, i.e. $\forall \epsilon > 0, \exists N \in \mathbb{N}$ s.t. $n, m \geq N \implies |a_n - a_m| < \epsilon$ \\ 
+we want to show \\
+1. $(a_n)$ is cauchy $\forall a \in \mathbb{R} \rightarrow a \cdot (a_n)$ is also cauchy. What does it mean to multiply a number to a sequence? it means to multiply a number to each element of the sequence. i.e. $(a \cdot a_n)$\\
+2. $(a_n)$ and $(b_n)$ are cauchy $\rightarrow (a_n + b_n)$ is also cauchy. \\ 
+3. if $(a_n) + (b_n)$ is cauchy, then $(a_n)(b_n)$ are cauchy. \\
+
+\begin{proofbox}[proof of 2, 3]
+    $(a_n)$ and $(b_n)$ are cauchy $\rightarrow (a_n + b_n)$ is also cauchy. \\
+    let $\epsilon > 0, \exists N \text{ such that } \forall n_1, n_2, m_1, m_2 > N \implies |a_{n_1}  - a_{m_1}| < \epsilon    \text{ and } |b_{n_2} - b_{m_2}| < \epsilon$ \\
+
+    w.t.s $\exists M \text{ such that } \forall n_3, m_3 > M \implies |(a_{n_3} + b_{n_3}) - (a_{m_3} + b_{m_3})| < \epsilon$ \\ (using triangle inequality we can pair a's and b's together) \\
+    $|(a_{n_3} + b_{n_3}) - (a_{m_3} + b_{m_3})| = |(a_{n_3} - a_{m_3}) + (b_{n_3} - b_{m_3})| \leq |a_{n_3} - a_{m_3}| + |b_{n_3} - b_{m_3}| < 2\epsilon$ \\
+
+    
+    3. WTS $\exists M \text{ such that } \forall n_3, m_3 > M \implies |(a_{n_3} \cdot b_{n_3}) - (a_{m_3} \cdot b_{m_3})| < \epsilon$ \\
+    $ = |a_{n_3} \cdot b_{n_3} - a_{m_3} \cdot b_{m_3}| = |a_{n_3} \cdot b_{n_3} - a_{n_3} \cdot b_{m_3} + a_{n_3} \cdot b_{m_3} - a_{m_3} \cdot b_{m_3}|$  (we add an subtract) \\
+    $ = |a_{n_3} \cdot (b_{n_3} - b_{m_3}) + b_{m_3} \cdot (a_{n_3} - a_{m_3})| $      \hspace{30pt} ( ... we need a lemma) using lemma 1.2 we see that the sequence converges 
+
+\end{proofbox}
+\begin{lemma}
+    if $(a_n)$ is cauchy, then the sequence $(a_n)$ is bounded. 
+    $$\forall \epsilon_0 > 0, \exists N \text{ such that } \forall n, m  > N \implies |a_n - a_m| < \epsilon$$ 
+    in particular,if we look at $|a_n - a_N | < \epsilon$ for $n \geq N$ $$-\epsilon_0 < a_n - a_N < \epsilon_0 \implies a_N - \epsilon < a_n < \epsilon + a_N$$ 
+?? reverse inequality: $|a_n| - |a_N| < |a_n - a_N| < \epsilon_0 \implies |a_n| < |a_N| + \epsilon_0$ we see that the sequence is bounded by some number; in mathematical terms $M \text{ such that } \forall n \in \mathbb{N} \implies |a_n| < M$ we can choose $M = \max\{|a_1|, |a_2|, \dots, |a_N| + \epsilon_0\}$ 
+\end{lemma}
+\begin{definition}
+    define $$[(b_n)][(a_n)] = [(a_n \cdot b_n)]$$ 
+    $$[(a_n)]([(b_n)] + [c_n]) = [(a_n)] \cdot [(b_n + c_n)] = [(a_n \cdot b_n + a_n \cdot c_n)]$$ 
+
+\end{definition}
+\begin{theorem}
+    $$(a_n) \subseteq \mathbb{R}$$
+    cauchy $ \longleftrightarrow (a_n)$ converges (there is a specific number that the sequence converges to) $\exists a \text{ such that } \forall \epsilon \exists N \text{ such that } \forall n \geq N \implies |a_n - a| < \epsilon$
+    
+    \begin{proof}
+        $(a_n)$ bounded, due to B.W Theorem. there exists a convergence subsequence.  consider $(a_{n_j})_{j \geq 1}$ then $a \text{ such that } \forall \epsilon > 0, \exists J \in \mathbb{N} \text{ such that } \forall j \geq J \implies |a_{n_j} - a| < \epsilon$     \\ 
+        $\exists N, \text{ such that } \forall n, m \geq N \implies |a_n - a_m| < \epsilon$ we pick $j$ large enough such that $j \geq J$ and $n_j \geq N$ we know that $|a_{n_j} - a| < \epsilon$ and $|a_{n_{j+1}} - a| < \epsilon$ we can use the triangle inequality to show that $|a_n - a| < 2\epsilon$
+
+    \end{proof}
+\end{theorem}
+
+\section{liminf and limsup}
+they are combination of words limit  infimum and limit supremum.
+\begin{definition}[Limsup]
+    given $(a_n)_{n \geq 1}$ define $limsup(a_n)$ which is not the same concept as $\sup\{a_n\}$ they are not equal in general. $limsup(a_n) =  \sup \{inf\{a_{n_j} : a_{n_j} \text{ is a subsequence of } (a_n)\} \}$ 
+    $(a_n)$ is bounded then = $\sup\{ \lim_{n \to \infty} \sup\{a_{n_j} \}\}$
+    thus $= \lim \sup\{a_n\} = \lim_{n \to \infty} \{\sup\{a_m\}\}$ $m \geq N$ 
+\end{definition}
+\begin{definition}[Liminf]
+    $liminf(a_n) = \inf\{ \sup\{a_{n_j} : a_{n_j} \text{ is a subsequence of } (a_n)\} \}$ 
+    $(a_n)$ is bounded then = $\inf\{ \lim_{n \to \infty} \inf\{a_{n_j} \}\}$
+    thus $= \lim \inf\{a_n\} = \lim_{n \to \infty} \{\inf\{a_m\}\}$ $m \geq N$
+\end{definition}
+
+\begin{definition}[Cluster Point ]
+    $a$ is a cluster point of $(a_n)_{n \geq 1}$ if $\exists $ subsequence $(a_{n_j} ) _{j \geq 1} \text{ such that } \lim_{j \to \infty} a_{n_j} = a$
+
+\end{definition}
+Here is an example, make a subsequence with cluster points 1, 2, 3, and $\infty$
+\begin{align*}
+    a_n = \begin{cases}
+        1 & \text{if } n = 1 \mod 4\\ 
+        2 & \text{if } n = 2 \mod 4\\
+        3 & \text{if } n = 3 \mod 4\\
+        n & \text{if } n = 0 \mod 4\\
+    \end{cases}
+\end{align*}
+then $lim\sup(a_n) = \infty$ and $lim\inf(a_n) = 1$
+
+\begin{theorem}
+    $\forall (a_n)_{n \geq 1}$ cluster points of $(a_n)$ are in the interval $[\lim\inf(a_n), \lim\sup(a_n)]$
+    \begin{proof}
+        Recall the definiition, $a_n = liminf(a_n) = \inf\{ \sup\{a_{n_j} : a_{n_j} \text{ is a subsequence of } (a_n)\} \}$
+         and , $\Bar{a_n} = limsup(a_n) =   \sup\{ \inf\{a_{n_j} : a_{n_j} \text{ is a subsequence of } (a_n)\} \}$ this means $a_n = inf\{ \sup\{a_{n_j} : a_{n_j} \text{ is a subsequence of } (a_n)\} \leq \sup\{a_{n_j} : a_{n_j} \text{ is a subsequence of } (a_n)\} \leq \sup\{a_m\}$ for $m \geq N$ and $a_n \leq \sup\{a_m\}$ for $m \geq N$
+         let $a$, be a cluster point $\implies \exists$ subsequence $(a_{n_j})_{j \geq 1}$ s.t. $\lim_{j \to \infty} a_{n_j} = a$
+
+    \end{proof}
+\end{theorem}
+Corollary:     if $lim\sup(a_n) = lim\inf(a_n)$ then $(a_n)$ converges. in this case all three are equal
+\end{document}
